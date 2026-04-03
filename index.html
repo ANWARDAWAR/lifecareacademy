@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIFECARE ACADEMY - Occupational Health and Safety Consultancy</title>
+    <meta name="description" content="LifeCare Academy offers internationally recognized occupational health and safety certifications including OTHM, IOSH, OSHA, ISO, and First Aid training.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;700&family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef6ff',
+                            100: '#d9eaff',
+                            200: '#b7d6ff',
+                            300: '#83bbff',
+                            400: '#4e97f8',
+                            500: '#2f7ce9',
+                            600: '#1f63cb',
+                            700: '#1d50a4',
+                            800: '#1e447f',
+                            900: '#1e3c6b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Google Sans', 'system-ui', 'sans-serif'],
+                        serif: ['Oswald', 'Georgia', 'serif']
+                    },
+                    boxShadow: {
+                        glow: '0 20px 50px -18px rgba(31, 99, 203, 0.55)'
+                    }
+                }
+            }
+        };
+    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --page-glow: radial-gradient(circle at 20% 10%, rgba(47, 124, 233, 0.12), transparent 42%), radial-gradient(circle at 85% 20%, rgba(15, 23, 42, 0.08), transparent 40%);
+        }
+
+        * {
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        body {
+            background-image: var(--page-glow);
+        }
+
+        .dark body {
+            background-image: radial-gradient(circle at 20% 10%, rgba(47, 124, 233, 0.18), transparent 45%), radial-gradient(circle at 85% 20%, rgba(15, 23, 42, 0.45), transparent 45%);
+        }
+
+        .glass-header {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .site-title {
+            font-family: 'Oswald', Georgia, serif;
+            letter-spacing: 0.02em;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+            animation: viewFade 0.35s ease;
+        }
+
+        @keyframes viewFade {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: center;
+            background: #1f63cb;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link.active {
+            color: #1f63cb;
+        }
+
+        .dark .nav-link.active {
+            color: #83bbff;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transform: scale(1.04);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 1s ease, transform 5s ease;
+        }
+
+        .hero-dot.active {
+            background-color: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .slider-track,
+        .gallery-track {
+            display: flex;
+            transition: transform 0.6s ease;
+            will-change: transform;
+        }
+
+        .slider-slide,
+        .gallery-slide {
+            min-width: 100%;
+            flex: 0 0 100%;
+        }
+
+        .slider-dot.active,
+        .gallery-dot.active {
+            background-color: #1f63cb;
+            transform: scale(1.15);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 280px;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .modal-shell {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            z-index: 90;
+            background: rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .modal-shell.show {
+            display: flex;
+        }
+
+        .modal-panel {
+            width: 100%;
+            max-width: 980px;
+            max-height: 90vh;
+            overflow: auto;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.3);
+        }
+
+        .dark .modal-panel {
+            background: rgba(15, 23, 42, 0.88);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .apply-modal-focus-outline:focus {
+            outline: 3px solid rgba(47, 124, 233, 0.32);
+            outline-offset: 2px;
+        }
+
+        .apply-modal-inner {
+            max-height: 90vh;
+            overflow: auto;
+        }
+
+        #signature-pad {
+            border-radius: 0.5rem;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+        }
+
+        .dark #signature-pad {
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .course-card,
+        .team-card {
+            transform: translateY(0);
+        }
+
+        .course-card:hover,
+        .team-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 1rem;
+            bottom: 1rem;
+            z-index: 80;
+            animation: pulseWhatsapp 2.1s infinite;
+        }
+
+        @keyframes pulseWhatsapp {
+            0% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.45);
+            }
+            70% {
+                box-shadow: 0 0 0 14px rgba(34, 197, 94, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .modal-panel,
+            .apply-modal-inner {
+                border-radius: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
+    <header class="glass-header sticky top-0 z-50 border-b border-white/30 bg-white/70 dark:border-white/10 dark:bg-slate-900/65">
+        <div class="mx-auto max-w-7xl px-4 py-3 sm:px-6">
+            <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <img src="/logo.png" alt="LifeCare Academy" class="h-10 w-auto object-contain">
+                    <div>
+                        <h1 class="site-title text-base font-bold sm:text-lg">LIFECARE ACADEMY</h1>
+                        <p class="text-xs text-slate-600 dark:text-slate-300">Occupational Health and Safety Consultancy</p>
+                    </div>
+                </div>
+
+                <nav class="hidden items-center gap-6 md:flex">
+                    <button type="button" class="nav-link text-sm font-semibold" data-view-target="home" onclick="navigate('home')">Home</button>
+                    <button type="button" class="nav-link text-sm font-semibold" data-view-target="about" onclick="navigate('about')">About Us</button>
+                    <button type="button" class="nav-link text-sm font-semibold" data-view-target="courses" onclick="navigate('courses')">Courses</button>
+                    <button type="button" class="nav-link text-sm font-semibold" data-view-target="contact" onclick="navigate('contact')">Contact Us</button>
+
+                    <button id="theme-toggle" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon hidden"></i>
+                    </button>
+
+                    <button type="button" onclick="navigate('contact')" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-brand-700">Enquire Now</button>
+                </nav>
+
+                <div class="flex items-center gap-3 md:hidden">
+                    <button id="theme-toggle-mobile" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700" aria-label="Toggle dark mode">
+                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-sun sun-icon hidden"></i>
+                    </button>
+                    <button id="mobile-menu-button" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden border-t border-slate-200 pt-4 dark:border-slate-700 md:hidden">
+                <div class="grid gap-2">
+                    <button type="button" class="nav-link rounded-md px-2 py-2 text-left text-sm font-semibold" data-view-target="home" onclick="navigate('home')">Home</button>
+                    <button type="button" class="nav-link rounded-md px-2 py-2 text-left text-sm font-semibold" data-view-target="about" onclick="navigate('about')">About Us</button>
+                    <button type="button" class="nav-link rounded-md px-2 py-2 text-left text-sm font-semibold" data-view-target="courses" onclick="navigate('courses')">Courses</button>
+                    <button type="button" class="nav-link rounded-md px-2 py-2 text-left text-sm font-semibold" data-view-target="contact" onclick="navigate('contact')">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="min-h-screen">
+        <section id="view-home" class="view active">
+            <div class="relative overflow-hidden">
+                <div id="hero-slider" class="absolute inset-0">
+                    <div class="hero-slide active" style="background-image: url('ad1.png');"></div>
+                    <div class="hero-slide" style="background-image: url('ad2.png');"></div>
+                    <div class="hero-slide" style="background-image: url('ad3.png');"></div>
+                    <div class="hero-slide" style="background-image: url('ad4.png');"></div>
+                    <div class="hero-slide" style="background-image: url('ad5.png');"></div>
+                </div>
+                <div class="absolute inset-0 bg-slate-950/65"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-900/80 via-brand-800/50 to-slate-900/40"></div>
+
+                <div class="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-28">
+                    <div class="max-w-3xl">
+                        <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-1.5 text-sm font-semibold text-white/95 backdrop-blur">
+                            <i class="fa-solid fa-shield-heart"></i>
+                            Approved Center - OTHM, IOSH, OSHA, AOSH, NEBOSH
+                        </p>
+                        <h2 class="font-serif text-4xl font-bold leading-tight text-white md:text-5xl">Developing Safety Leaders for High-Risk Industries</h2>
+                        <p class="mt-5 max-w-2xl text-lg text-slate-100/95">
+                            Delivering practical, internationally benchmarked training programs for professionals, supervisors, and organizations committed to safer workplaces.
+                        </p>
+
+                        <div class="mt-8 flex flex-wrap gap-3">
+                            <button type="button" onclick="navigate('courses')" class="rounded-lg bg-white px-6 py-3 text-sm font-bold text-brand-700 hover:bg-slate-100">Browse Courses</button>
+                            <button type="button" onclick="navigate('contact')" class="rounded-lg border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur hover:bg-white/20">Book a Consultation</button>
+                        </div>
+
+                        <div class="mt-8 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
+                            <div class="rounded-lg border border-white/25 bg-white/10 p-3 text-center backdrop-blur">
+                                <p class="text-xl font-extrabold text-white">15+</p>
+                                <p class="text-xs text-white/90">Years Expertise</p>
+                            </div>
+                            <div class="rounded-lg border border-white/25 bg-white/10 p-3 text-center backdrop-blur">
+                                <p class="text-xl font-extrabold text-white">6</p>
+                                <p class="text-xs text-white/90">Core Programs</p>
+                            </div>
+                            <div class="rounded-lg border border-white/25 bg-white/10 p-3 text-center backdrop-blur">
+                                <p class="text-xl font-extrabold text-white">1,000+</p>
+                                <p class="text-xs text-white/90">Learners Trained</p>
+                            </div>
+                            <div class="rounded-lg border border-white/25 bg-white/10 p-3 text-center backdrop-blur">
+                                <p class="text-xl font-extrabold text-white">24/7</p>
+                                <p class="text-xs text-white/90">Support Channels</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2">
+                    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/55" data-hero-dot="0" aria-label="Hero slide 1"></button>
+                    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/55" data-hero-dot="1" aria-label="Hero slide 2"></button>
+                    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/55" data-hero-dot="2" aria-label="Hero slide 3"></button>
+                    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/55" data-hero-dot="3" aria-label="Hero slide 4"></button>
+                    <button type="button" class="hero-dot h-2.5 w-2.5 rounded-full bg-white/55" data-hero-dot="4" aria-label="Hero slide 5"></button>
+                </div>
+            </div>
+
+            <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+                <div class="mb-8 text-center">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">Approved Certificates</p>
+                    <h3 class="mt-2 text-3xl font-extrabold">Recognized Training Ecosystem</h3>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                    <div id="cert-track" class="slider-track">
+                        <div class="slider-slide p-6 sm:p-8">
+                            <img src="1.png" alt="Certificate 1" class="h-[320px] w-full rounded-xl object-contain">
+                        </div>
+                        <div class="slider-slide p-6 sm:p-8">
+                            <img src="2.png" alt="Certificate 2" class="h-[320px] w-full rounded-xl object-contain">
+                        </div>
+                        <div class="slider-slide p-6 sm:p-8">
+                            <img src="3.png" alt="Certificate 3" class="h-[320px] w-full rounded-xl object-contain">
+                        </div>
+                        <div class="slider-slide p-6 sm:p-8">
+                            <img src="4.png" alt="Certificate 4" class="h-[320px] w-full rounded-xl object-contain">
+                        </div>
+                    </div>
+
+                    <button id="cert-prev" type="button" class="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 text-slate-700 shadow hover:bg-white dark:bg-slate-800/90 dark:text-slate-100" aria-label="Previous certificate">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="cert-next" type="button" class="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 text-slate-700 shadow hover:bg-white dark:bg-slate-800/90 dark:text-slate-100" aria-label="Next certificate">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <div class="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+                        <button type="button" class="slider-dot h-2.5 w-2.5 rounded-full bg-white/75" data-cert-dot="0" aria-label="Certificate slide 1"></button>
+                        <button type="button" class="slider-dot h-2.5 w-2.5 rounded-full bg-white/75" data-cert-dot="1" aria-label="Certificate slide 2"></button>
+                        <button type="button" class="slider-dot h-2.5 w-2.5 rounded-full bg-white/75" data-cert-dot="2" aria-label="Certificate slide 3"></button>
+                        <button type="button" class="slider-dot h-2.5 w-2.5 rounded-full bg-white/75" data-cert-dot="3" aria-label="Certificate slide 4"></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-gradient-to-r from-brand-900 to-brand-700 py-16 text-white dark:from-brand-900 dark:to-slate-900">
+                <div class="mx-auto max-w-7xl px-4 sm:px-6">
+                    <div class="mb-10 text-center">
+                        <h3 class="text-3xl font-extrabold">Our Mission and Impact</h3>
+                        <p class="mx-auto mt-3 max-w-3xl text-brand-100">
+                            We empower professionals and organizations with practical systems that reduce incidents, strengthen compliance, and build a sustainable culture of safety.
+                        </p>
+                    </div>
+
+                    <div class="grid gap-6 md:grid-cols-3">
+                        <article class="rounded-2xl border border-white/25 bg-white/10 p-7 backdrop-blur">
+                            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-amber-400/20 text-amber-200">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Addressing the Skills Gap</h4>
+                            <p class="mt-3 text-sm text-brand-100">We prepare safety professionals for roles that industries urgently need, from site safety to strategic leadership.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-white/25 bg-white/10 p-7 backdrop-blur">
+                            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-200">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Building Responsible Leaders</h4>
+                            <p class="mt-3 text-sm text-brand-100">Our learning model emphasizes decision-making, accountability, and incident prevention under real operational pressure.</p>
+                        </article>
+
+                        <article class="rounded-2xl border border-white/25 bg-white/10 p-7 backdrop-blur">
+                            <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-rose-400/20 text-rose-200">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Inclusive Access to Learning</h4>
+                            <p class="mt-3 text-sm text-brand-100">Through flexible payment and learner support, we help more candidates access globally relevant safety education.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+                <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">Gallery</p>
+                        <h3 class="mt-2 text-3xl font-extrabold">Inside LifeCare Academy</h3>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button id="gallery-prev" type="button" class="rounded-full border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" aria-label="Previous gallery image"><i class="fas fa-chevron-left"></i></button>
+                        <button id="gallery-next" type="button" class="rounded-full border border-slate-300 bg-white px-3 py-2 text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800" aria-label="Next gallery image"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                    <div id="gallery-track" class="gallery-track">
+                        <div class="gallery-slide p-4"><img src="ad1.png" alt="Gallery image 1" class="h-[360px] w-full rounded-xl object-cover"></div>
+                        <div class="gallery-slide p-4"><img src="ad2.png" alt="Gallery image 2" class="h-[360px] w-full rounded-xl object-cover"></div>
+                        <div class="gallery-slide p-4"><img src="ad3.png" alt="Gallery image 3" class="h-[360px] w-full rounded-xl object-cover"></div>
+                        <div class="gallery-slide p-4"><img src="ad4.png" alt="Gallery image 4" class="h-[360px] w-full rounded-xl object-cover"></div>
+                        <div class="gallery-slide p-4"><img src="ad5.png" alt="Gallery image 5" class="h-[360px] w-full rounded-xl object-cover"></div>
+                    </div>
+
+                    <div class="absolute bottom-5 left-1/2 flex -translate-x-1/2 gap-2">
+                        <button type="button" class="gallery-dot h-2.5 w-2.5 rounded-full bg-white/75" data-gallery-dot="0" aria-label="Gallery slide 1"></button>
+                        <button type="button" class="gallery-dot h-2.5 w-2.5 rounded-full bg-white/75" data-gallery-dot="1" aria-label="Gallery slide 2"></button>
+                        <button type="button" class="gallery-dot h-2.5 w-2.5 rounded-full bg-white/75" data-gallery-dot="2" aria-label="Gallery slide 3"></button>
+                        <button type="button" class="gallery-dot h-2.5 w-2.5 rounded-full bg-white/75" data-gallery-dot="3" aria-label="Gallery slide 4"></button>
+                        <button type="button" class="gallery-dot h-2.5 w-2.5 rounded-full bg-white/75" data-gallery-dot="4" aria-label="Gallery slide 5"></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6">
+                <div class="mb-8 text-center">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">FAQs</p>
+                    <h3 class="mt-2 text-3xl font-extrabold">Most Frequent Questions and Answers</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <article class="faq-item rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                        <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false">
+                            <span class="font-semibold">What is NEBOSH IGC?</span>
+                            <i class="faq-icon fas fa-chevron-down text-brand-600"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-5 text-sm text-slate-600 dark:text-slate-300">
+                            NEBOSH International General Certificate is a globally respected qualification that equips managers and safety practitioners with a practical framework for risk control and legal compliance.
+                        </div>
+                    </article>
+
+                    <article class="faq-item rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                        <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false">
+                            <span class="font-semibold">What is IOSH Managing Safely?</span>
+                            <i class="faq-icon fas fa-chevron-down text-brand-600"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-5 text-sm text-slate-600 dark:text-slate-300">
+                            IOSH Managing Safely is practical health and safety training developed for supervisors and managers to confidently manage risks and improve team safety performance.
+                        </div>
+                    </article>
+
+                    <article class="faq-item rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                        <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false">
+                            <span class="font-semibold">What does OBE mean in training?</span>
+                            <i class="faq-icon fas fa-chevron-down text-brand-600"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-5 text-sm text-slate-600 dark:text-slate-300">
+                            OBE stands for Outcome-Based Education, where learning is measured by demonstrated competence and practical application rather than theory alone.
+                        </div>
+                    </article>
+
+                    <article class="faq-item rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                        <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false">
+                            <span class="font-semibold">How is fee payment managed?</span>
+                            <i class="faq-icon fas fa-chevron-down text-brand-600"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-5 text-sm text-slate-600 dark:text-slate-300">
+                            We support flexible payments including installments. Once your admission is confirmed, our team shares secure payment details and due-date options.
+                        </div>
+                    </article>
+
+                    <article class="faq-item rounded-xl border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+                        <button type="button" class="faq-toggle flex w-full items-center justify-between gap-4 px-6 py-5 text-left" aria-expanded="false">
+                            <span class="font-semibold">Do you offer refunds?</span>
+                            <i class="faq-icon fas fa-chevron-down text-brand-600"></i>
+                        </button>
+                        <div class="faq-answer px-6 pb-5 text-sm text-slate-600 dark:text-slate-300">
+                            Refunds may be considered according to enrollment stage and material access. Our admissions office reviews each case transparently and may offer transfer options when applicable.
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <section id="view-about" class="view">
+            <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+                <div class="rounded-3xl bg-gradient-to-r from-brand-900 via-brand-800 to-slate-900 px-8 py-14 text-white">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-200">About LifeCare Academy</p>
+                    <h2 class="mt-3 font-serif text-4xl font-bold">Professional Safety Education with Real-World Relevance</h2>
+                    <p class="mt-4 max-w-3xl text-brand-100">
+                        We are a consultancy-led academy focused on helping professionals and organizations elevate safety standards through practical, internationally aligned training.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mx-auto grid max-w-7xl gap-8 px-4 pb-14 sm:px-6 lg:grid-cols-2">
+                <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <h3 class="text-2xl font-extrabold">Who We Are</h3>
+                    <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        LifeCare Academy is an occupational health and safety consultancy and training center based in Peshawar, Pakistan. We work with individual professionals, corporate teams, and project-driven organizations to close competency gaps in health, safety, and environmental management.
+                    </p>
+                    <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        Our instructors combine industry exposure with practical teaching methods, helping learners apply standards in construction sites, industrial facilities, and high-risk operational environments from day one.
+                    </p>
+                </article>
+
+                <article class="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <h3 class="text-2xl font-extrabold">Our Vision and Core Values</h3>
+                    <p class="mt-4 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                        Our vision is to become the most trusted regional center for occupational safety leadership development.
+                    </p>
+                    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-xl border border-brand-100 bg-brand-50 p-4 dark:border-brand-900/40 dark:bg-brand-900/20">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-200">Integrity</h4>
+                            <p class="mt-1 text-xs text-slate-600 dark:text-slate-300">Transparent guidance, ethical practice, and measurable outcomes.</p>
+                        </div>
+                        <div class="rounded-xl border border-brand-100 bg-brand-50 p-4 dark:border-brand-900/40 dark:bg-brand-900/20">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-200">Practical Excellence</h4>
+                            <p class="mt-1 text-xs text-slate-600 dark:text-slate-300">Training that solves real workplace challenges, not only exam requirements.</p>
+                        </div>
+                        <div class="rounded-xl border border-brand-100 bg-brand-50 p-4 dark:border-brand-900/40 dark:bg-brand-900/20">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-200">Accessibility</h4>
+                            <p class="mt-1 text-xs text-slate-600 dark:text-slate-300">Flexible learning pathways for working professionals and aspiring officers.</p>
+                        </div>
+                        <div class="rounded-xl border border-brand-100 bg-brand-50 p-4 dark:border-brand-900/40 dark:bg-brand-900/20">
+                            <h4 class="font-bold text-brand-700 dark:text-brand-200">Continuous Improvement</h4>
+                            <p class="mt-1 text-xs text-slate-600 dark:text-slate-300">Programs evolve with global standards and industry feedback.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6">
+                <div class="rounded-2xl border border-slate-200 bg-white p-8 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <h3 class="text-2xl font-extrabold">Why Choose LifeCare Academy</h3>
+                    <div class="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+                        <div class="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+                            <i class="fas fa-globe-asia text-xl text-brand-600"></i>
+                            <h4 class="mt-3 font-bold">Internationally Aligned Programs</h4>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Courses mapped to recognized standards and employer expectations.</p>
+                        </div>
+                        <div class="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+                            <i class="fas fa-chalkboard-user text-xl text-brand-600"></i>
+                            <h4 class="mt-3 font-bold">Industry-Focused Trainers</h4>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Learn from professionals with field and audit-level experience.</p>
+                        </div>
+                        <div class="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+                            <i class="fas fa-people-group text-xl text-brand-600"></i>
+                            <h4 class="mt-3 font-bold">Dedicated Student Support</h4>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Admissions, scheduling, and progression guidance throughout your journey.</p>
+                        </div>
+                        <div class="rounded-xl border border-slate-200 p-5 dark:border-slate-700">
+                            <i class="fas fa-shield-check text-xl text-brand-600"></i>
+                            <h4 class="mt-3 font-bold">Career-Oriented Outcomes</h4>
+                            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Build credentials and confidence that translate directly into workplace value.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6">
+                <div class="mb-8 text-center">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">Our Team</p>
+                    <h3 class="mt-2 text-3xl font-extrabold">Leadership and Administration</h3>
+                </div>
+
+                <div class="grid gap-6 md:grid-cols-3">
+                    <article class="team-card rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-lg hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div class="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border-4 border-white shadow dark:border-slate-700">
+                            <img src="sajid_ullah.jpeg" alt="Sajid Ullah" class="h-full w-full object-cover object-bottom">
+                        </div>
+                        <h4 class="text-xl font-bold">SAJID ULLAH</h4>
+                        <p class="mt-2 inline-flex rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700 dark:bg-brand-900/30 dark:text-brand-200">Owner of LifeCareAcademy.org</p>
+                        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300">With over 15 years of experience in occupational safety and health training.</p>
+                    </article>
+
+                    <article class="team-card rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-lg hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div class="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full border-4 border-white bg-blue-100 shadow dark:border-slate-700 dark:bg-blue-900/30">
+                            <i class="fas fa-user-cog text-4xl text-blue-600 dark:text-blue-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold">SAYIM SAJID</h4>
+                        <p class="mt-2 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-200">Branch Administrator Incharge</p>
+                        <p class="mt-3 text-sm text-slate-600 dark:text-slate-300"><i class="fas fa-envelope mr-2"></i>sayim@lifecareacademy.org</p>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Manages branch operations and student support services.</p>
+                    </article>
+
+                    <article class="team-card rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-lg hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                        <div class="mx-auto mb-5 flex h-28 w-28 items-center justify-center rounded-full border-4 border-white bg-emerald-100 shadow dark:border-slate-700 dark:bg-emerald-900/30">
+                            <i class="fas fa-user-graduate text-4xl text-emerald-600 dark:text-emerald-300"></i>
+                        </div>
+                        <h4 class="text-xl font-bold">RUKHSAR SAJID</h4>
+                        <p class="mt-2 inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-200">Branch Administrator</p>
+                        <p class="mt-3 text-sm text-slate-600 dark:text-slate-300"><i class="fas fa-envelope mr-2"></i>rukhsar@lifecareacademy.org</p>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Handles admissions, certificates, and administrative coordination.</p>
+                    </article>
+                </div>
+            </section>
+        </section>
+
+        <section id="view-courses" class="view">
+            <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+                <div class="mb-8 text-center">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600 dark:text-brand-300">All Courses</p>
+                    <h2 class="mt-2 text-3xl font-extrabold">Explore a Variety of Quality Programs</h2>
+                    <p class="mx-auto mt-3 max-w-2xl text-sm text-slate-600 dark:text-slate-300">Search by keyword or filter by category. Every program opens in a detailed in-page modal with structured information.</p>
+                </div>
+
+                <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                    <div class="grid gap-4 md:grid-cols-[1.3fr_2fr]">
+                        <label class="relative block">
+                            <span class="sr-only">Search courses</span>
+                            <i class="fas fa-magnifying-glass pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                            <input id="course-search" type="text" placeholder="Search courses, standards, or outcomes" class="w-full rounded-xl border border-slate-300 bg-slate-50 py-3 pl-11 pr-4 text-sm focus:border-brand-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100">
+                        </label>
+
+                        <div class="flex flex-wrap gap-2">
+                            <button type="button" class="category-filter rounded-full border border-brand-200 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-700 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-200" data-category="All">All Programs</button>
+                            <button type="button" class="category-filter rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold" data-category="Fire Safety">Fire Safety</button>
+                            <button type="button" class="category-filter rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold" data-category="Management">Management</button>
+                            <button type="button" class="category-filter rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold" data-category="Construction">Construction</button>
+                            <button type="button" class="category-filter rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold" data-category="Compliance">Compliance</button>
+                            <button type="button" class="category-filter rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold" data-category="First Aid">First Aid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="courses-grid" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+                <p id="courses-empty" class="mt-6 hidden rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-700 dark:border-amber-900/40 dark:bg-amber-900/20 dark:text-amber-200">No courses matched your filter. Try a broader keyword or switch categories.</p>
+            </div>
+        </section>
+
+        <section id="view-contact" class="view">
+            <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+                <div class="mb-10 rounded-3xl bg-gradient-to-r from-slate-900 via-brand-900 to-brand-700 px-8 py-12 text-white">
+                    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-200">Need Immediate Assistance?</p>
+                    <h2 class="mt-3 font-serif text-4xl font-bold">Let's Plan Your Safety Learning Path</h2>
+                    <p class="mt-4 max-w-3xl text-brand-100">
+                        Our team is available to guide individuals and organizations on course selection, scheduling, and enrollment.
+                    </p>
+                    <div class="mt-6 flex flex-wrap gap-4">
+                        <a href="tel:+923188841920" class="inline-flex items-center gap-2 rounded-lg border border-white/35 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-white/20">
+                            <i class="fas fa-phone"></i>
+                            +92 318 884 1920
+                        </a>
+                        <a href="tel:+923489196200" class="inline-flex items-center gap-2 rounded-lg border border-white/35 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur hover:bg-white/20">
+                            <i class="fas fa-phone"></i>
+                            +92 348 919 6200
+                        </a>
+                        <a href="https://wa.me/923489196200" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-600">
+                            <i class="fab fa-whatsapp"></i>
+                            WhatsApp Support
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid gap-8 lg:grid-cols-2">
+                    <div class="rounded-2xl border border-slate-200 bg-white p-7 shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                        <h3 class="text-2xl font-extrabold">Contact Form</h3>
+                        <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Share your inquiry and our admissions advisor will contact you shortly.</p>
+
+                        <form id="contact-form" class="mt-6 space-y-4">
+                            <div>
+                                <label for="contact-name" class="mb-1 block text-sm font-semibold">Full Name</label>
+                                <input id="contact-name" name="name" type="text" required class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-brand-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800">
+                            </div>
+                            <div>
+                                <label for="contact-email" class="mb-1 block text-sm font-semibold">Email Address</label>
+                                <input id="contact-email" name="email" type="email" required class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-brand-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800">
+                            </div>
+                            <div>
+                                <label for="contact-subject" class="mb-1 block text-sm font-semibold">Subject</label>
+                                <input id="contact-subject" name="subject" type="text" required class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-brand-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800">
+                            </div>
+                            <div>
+                                <label for="contact-message" class="mb-1 block text-sm font-semibold">Message</label>
+                                <textarea id="contact-message" name="message" rows="5" required class="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-2.5 text-sm focus:border-brand-400 focus:outline-none dark:border-slate-700 dark:bg-slate-800"></textarea>
+                            </div>
+                            <button type="submit" class="w-full rounded-lg bg-brand-600 px-5 py-3 text-sm font-bold text-white hover:bg-brand-700">Send Message</button>
+                            <p id="contact-feedback" class="hidden rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-sm font-medium text-emerald-700 dark:border-emerald-900/40 dark:bg-emerald-900/20 dark:text-emerald-200"></p>
+                        </form>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="grid gap-4 sm:grid-cols-2">
+                            <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                                <p class="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">Address</p>
+                                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Office #480, First Floor,<br>Deans Trade Center Saddar,<br>Peshawar, Pakistan</p>
+                            </article>
+                            <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                                <p class="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">Email</p>
+                                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">lifecareacademy7@gmil.com<br>isajid478@gmail.com</p>
+                            </article>
+                            <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                                <p class="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">Phone Numbers</p>
+                                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">+92 318 884 1920<br>+92 348 919 6200</p>
+                            </article>
+                            <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-lg dark:border-slate-800 dark:bg-slate-900">
+                                <p class="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">Office Hours</p>
+                                <p class="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: By Appointment</p>
+                            </article>
+                        </div>
+
+                        <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900">
+                            <div class="border-b border-slate-200 px-5 py-3 dark:border-slate-800">
+                                <p class="text-sm font-semibold uppercase tracking-[0.12em] text-brand-600 dark:text-brand-300">Google Maps</p>
+                            </div>
+                            <iframe title="LifeCare Academy location map" src="https://maps.google.com/maps?q=Deans%20Trade%20Center%20Saddar%20Peshawar&t=&z=15&ie=UTF8&iwloc=&output=embed" class="h-[320px] w-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-white/75 py-8 dark:border-slate-800 dark:bg-slate-900/75">
+        <div class="mx-auto max-w-7xl px-4 text-center sm:px-6">
+            <p class="text-sm text-slate-600 dark:text-slate-300">© <span id="current-year">2026</span> LIFECAREACADEMY.ORG - All Rights Reserved</p>
+            <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Developed by LORD &amp; Co.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923489196200" target="_blank" rel="noopener" class="whatsapp-float inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-500 text-2xl text-white shadow-2xl hover:bg-emerald-600" aria-label="Contact us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div id="course-modal" class="modal-shell" aria-hidden="true" role="dialog" aria-label="Course details modal">
+        <div class="modal-panel p-6 sm:p-8">
+            <div class="flex items-start justify-between gap-4">
+                <div>
+                    <p id="course-modal-category" class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-600 dark:text-brand-300"></p>
+                    <h3 id="course-modal-title" class="mt-2 text-3xl font-extrabold"></h3>
+                </div>
+                <button id="course-modal-close" type="button" class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700" aria-label="Close course modal">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="mt-6 grid gap-6 md:grid-cols-2">
+                <img id="course-modal-image" src="" alt="Course image" class="h-64 w-full rounded-xl object-cover">
+                <div>
+                    <p id="course-modal-overview" class="text-sm leading-7 text-slate-600 dark:text-slate-300"></p>
+                    <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                        <div class="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+                            <p class="text-xs uppercase text-slate-500">Duration</p>
+                            <p id="course-modal-duration" class="mt-1 text-sm font-bold"></p>
+                        </div>
+                        <div class="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+                            <p class="text-xs uppercase text-slate-500">Course Fee</p>
+                            <p id="course-modal-fee" class="mt-1 text-sm font-bold"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 grid gap-6 md:grid-cols-2">
+                <div>
+                    <h4 class="text-lg font-bold">What You Will Learn</h4>
+                    <ul id="course-modal-learn" class="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-300"></ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold">Course Modules</h4>
+                    <ul id="course-modal-modules" class="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-600 dark:text-slate-300"></ul>
+                </div>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+                <a href="forms/application-form.pdf" download class="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700">
+                    <i class="fas fa-download"></i>
+                    Download Application Form
+                </a>
+                <button id="course-modal-apply" type="button" class="apply-now inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700" data-course="">
+                    <i class="fas fa-paper-plane"></i>
+                    Apply Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="apply-modal-overlay" class="fixed inset-0 z-[95] hidden bg-slate-950/70 backdrop-blur-sm" aria-hidden="true"></div>
+    <div id="apply-modal" class="fixed inset-0 z-[96] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="apply-modal-title">
+        <div class="apply-modal-inner w-full max-w-2xl rounded-2xl border border-white/20 bg-white/90 p-6 shadow-2xl dark:border-white/10 dark:bg-slate-900/90">
+            <button id="apply-modal-close" type="button" class="apply-modal-focus-outline absolute right-8 top-8 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700" aria-label="Close apply modal">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <h3 id="apply-modal-title" class="text-2xl font-extrabold">Apply for this Course</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">Download the official form for offline processing or submit your details online for quick admission support.</p>
+
+            <div id="apply-modal-default" class="mt-5 grid gap-3 sm:grid-cols-2">
+                <a id="download-form-btn" href="forms/application-form.pdf" download class="apply-modal-focus-outline inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700">
+                    <i class="fas fa-download"></i>
+                    Download Form
+                </a>
+                <button id="apply-online-btn" type="button" class="apply-modal-focus-outline inline-flex items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">
+                    <i class="fas fa-arrow-up-right-from-square"></i>
+                    Apply Online
+                </button>
+            </div>
+
+            <div id="admission-form-container" class="mt-6 hidden">
+                <form id="admission-form" class="space-y-4">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="ad-date" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Date</label>
+                            <input id="ad-date" name="date" type="date" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                        <div>
+                            <label for="ad-name" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Student Name *</label>
+                            <input id="ad-name" name="studentName" type="text" required class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="ad-father" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Father Name</label>
+                            <input id="ad-father" name="fatherName" type="text" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                        <div>
+                            <label for="ad-phone" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Phone (03XXXXXXXXX) *</label>
+                            <input id="ad-phone" name="contact" type="tel" required maxlength="11" placeholder="03001234567" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <label for="ad-email" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Email *</label>
+                            <input id="ad-email" name="email" type="email" required class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                        <div>
+                            <label for="ad-course" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Admission in Course *</label>
+                            <select id="ad-course" name="admissionCourse" required class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                                <option value="">Select a course</option>
+                                <option>Fire Safety Training</option>
+                                <option>OTHM Level 6 Diploma</option>
+                                <option>IOSH Managing Safely</option>
+                                <option>OSHA (General & Construction)</option>
+                                <option>ISO Management Systems</option>
+                                <option>Professional First Aid</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="ad-address" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Address</label>
+                        <textarea id="ad-address" name="address" rows="3" class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800"></textarea>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div>
+                            <p class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Suitable Time</p>
+                            <div class="flex items-center gap-4 text-sm">
+                                <label class="inline-flex items-center gap-2"><input type="radio" name="suitableTime" value="Morning">Morning</label>
+                                <label class="inline-flex items-center gap-2"><input type="radio" name="suitableTime" value="Evening">Evening</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="typed-signature" class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Typed Signature *</label>
+                            <input id="typed-signature" name="typedSignature" type="text" required class="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm dark:border-slate-700 dark:bg-slate-800">
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="mb-1 block text-xs font-semibold uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300">Optional Drawn Signature</p>
+                        <canvas id="signature-pad" class="h-28 w-full bg-white dark:bg-slate-800"></canvas>
+                        <div class="mt-2 flex gap-2">
+                            <button id="sig-clear" type="button" class="rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700">Clear</button>
+                            <button id="sig-use" type="button" class="rounded-lg border border-brand-300 bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-700 hover:bg-brand-100 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-200">Use Drawn Signature</button>
+                            <span id="sig-status" class="self-center text-xs text-slate-500 dark:text-slate-400"></span>
+                        </div>
+                    </div>
+
+                    <div id="apply-phone-error" class="hidden rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-700 dark:border-rose-900/50 dark:bg-rose-900/20 dark:text-rose-200">Please enter a valid 11-digit Pakistani mobile number starting with 03.</div>
+
+                    <div class="flex flex-col gap-2 sm:flex-row">
+                        <button id="admission-submit" type="submit" class="w-full rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-700">Submit on WhatsApp</button>
+                        <button id="admission-cancel" type="button" class="w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const COURSES = [
+            {
+                id: 'fire-safety',
+                title: 'Fire Safety Training',
+                category: 'Fire Safety',
+                image: 'fire_safety.png',
+                duration: '3 Days',
+                fee: '12,000 PKR',
+                shortDescription: 'Comprehensive fire safety training covering prevention, risk assessment, extinguisher use, and emergency procedures.',
+                overview: 'Fire safety is a foundational requirement for every workplace. This practical program equips participants to identify hazards, prevent incidents, and respond effectively during fire emergencies.',
+                learn: [
+                    'Understand the Fire Triangle and key ignition risks',
+                    'Use the PASS method for extinguisher operation',
+                    'Execute evacuation plans and assembly procedures',
+                    'Perform practical risk assessments for high-risk areas'
+                ],
+                modules: [
+                    'Fire Prevention Fundamentals',
+                    'Emergency Response and Evacuation',
+                    'Hands-on Extinguisher Practice',
+                    'Workplace Fire Risk Assessment'
+                ]
+            },
+            {
+                id: 'othm-level-6',
+                title: 'OTHM Level 6 Diploma in OHS',
+                category: 'Management',
+                image: 'OTHM.png',
+                duration: '10 Days (Intensive Workshop)',
+                fee: '290,000 PKR',
+                shortDescription: 'Advanced qualification focused on strategic safety leadership and professional progression.',
+                overview: 'The OTHM Level 6 Diploma is equivalent to a bachelor-level qualification and designed for professionals moving into senior health and safety leadership roles.',
+                learn: [
+                    'Build strategic frameworks for health and safety governance',
+                    'Develop policy-level decision-making and leadership skills',
+                    'Strengthen readiness for GradIOSH progression pathways',
+                    'Align organizational practice with international standards'
+                ],
+                modules: [
+                    'Strategic Safety Management',
+                    'Leadership and Organizational Culture',
+                    'Policy, Compliance, and Governance',
+                    'Applied Case Analysis and Professional Practice'
+                ]
+            },
+            {
+                id: 'iosh-managing-safely',
+                title: 'IOSH Managing Safely',
+                category: 'Management',
+                image: 'IOSH.png',
+                duration: '4 Days (22 Hours)',
+                fee: '25,000 PKR',
+                shortDescription: 'Practical IOSH certification for supervisors and managers handling daily safety responsibilities.',
+                overview: 'IOSH Managing Safely is one of the most recognized manager-level safety certifications globally, focused on practical risk management and performance improvement.',
+                learn: [
+                    'Apply risk assessment in everyday operations',
+                    'Investigate incidents and identify root causes',
+                    'Measure and improve safety performance in teams',
+                    'Create accountability at supervisory and management levels'
+                ],
+                modules: [
+                    'Introducing Managing Safely',
+                    'Assessing and Controlling Risks',
+                    'Understanding Responsibilities',
+                    'Measuring and Improving Performance'
+                ]
+            },
+            {
+                id: 'osha-construction',
+                title: 'OSHA (General and Construction)',
+                category: 'Construction',
+                image: 'OSHA.png',
+                duration: '8 Days',
+                fee: '20,000 PKR',
+                shortDescription: 'Comprehensive OSHA-focused training for general and construction industry professionals.',
+                overview: 'This OSHA program trains participants on internationally recognized safety standards used in high-risk sectors including construction, industrial operations, and infrastructure projects.',
+                learn: [
+                    'Interpret OSHA principles for practical implementation',
+                    'Control hazards in general industry and construction settings',
+                    'Improve lifting, height, and site risk management',
+                    'Strengthen incident prevention in high-risk operations'
+                ],
+                modules: [
+                    'General Industry Safety and Health',
+                    'Construction Industry Safety and Health',
+                    'Cranes and Lifting Safety',
+                    'Working at Heights and Site Hazard Control'
+                ]
+            },
+            {
+                id: 'iso-management',
+                title: 'ISO Management Systems',
+                category: 'Compliance',
+                image: 'ISO.png',
+                duration: '7 Days',
+                fee: '85,000 PKR',
+                shortDescription: 'ISO 45001, ISO 14001, and integrated management systems for auditors and implementers.',
+                overview: 'An advanced ISO program designed for professionals implementing and auditing occupational health, safety, and environmental management systems.',
+                learn: [
+                    'Implement ISO 45001 and ISO 14001 frameworks',
+                    'Build integrated management system documentation',
+                    'Conduct internal audits with evidence-based methods',
+                    'Improve operational compliance and continual improvement'
+                ],
+                modules: [
+                    'ISO 45001 Interpretation and Application',
+                    'ISO 14001 Environmental Controls',
+                    'Integrated Management System Design',
+                    'Internal Audit and Corrective Action Planning'
+                ]
+            },
+            {
+                id: 'professional-first-aid',
+                title: 'Professional First Aid Certification',
+                category: 'First Aid',
+                image: 'FIRSTAID.png',
+                duration: '3 Days',
+                fee: '12,000 PKR',
+                shortDescription: 'Hands-on first aid course covering CPR, emergency response, and injury management.',
+                overview: 'This practical first aid certification builds confidence to respond quickly and correctly in emergency situations at work, home, and public environments.',
+                learn: [
+                    'Perform immediate emergency scene assessment',
+                    'Administer CPR and choking response protocols',
+                    'Treat burns, bleeding, fractures, and shock',
+                    'Apply practical first response in real scenarios'
+                ],
+                modules: [
+                    'Emergency Response Basics',
+                    'CPR and Airway Management',
+                    'Injury and Trauma Management',
+                    'Practical Drills and Scenario Assessment'
+                ]
+            }
+        ];
+
+        const appState = {
+            currentView: 'home',
+            selectedCategory: 'All',
+            searchTerm: '',
+            heroIndex: 0,
+            certIndex: 0,
+            galleryIndex: 0,
+            drawnSignature: ''
+        };
+
+        const VIEW_NAMES = ['home', 'about', 'courses', 'contact'];
+        const WHATSAPP_NUMBER = '923489196200';
+
+        function getInitialView() {
+            const hash = (window.location.hash || '').replace('#', '').toLowerCase();
+            return VIEW_NAMES.includes(hash) ? hash : 'home';
+        }
+
+        function navigate(viewName) {
+            const safeView = VIEW_NAMES.includes(viewName) ? viewName : 'home';
+            appState.currentView = safeView;
+
+            document.querySelectorAll('.view').forEach((view) => {
+                view.classList.toggle('active', view.id === 'view-' + safeView);
+            });
+
+            document.querySelectorAll('[data-view-target]').forEach((link) => {
+                link.classList.toggle('active', link.dataset.viewTarget === safeView);
+            });
+
+            history.replaceState(null, '', '#' + safeView);
+            closeMobileMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.navigate = navigate;
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.querySelector('#mobile-menu-button i');
+            if (!menu || !icon) {
+                return;
+            }
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+
+        function initMobileMenu() {
+            const button = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const icon = button ? button.querySelector('i') : null;
+
+            if (!button || !menu || !icon) {
+                return;
+            }
+
+            button.addEventListener('click', () => {
+                const open = menu.classList.toggle('hidden');
+                if (open) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-xmark');
+                }
+            });
+        }
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.documentElement.classList.toggle('dark', isDark);
+            localStorage.setItem('theme', theme);
+
+            document.querySelectorAll('.moon-icon').forEach((icon) => icon.classList.toggle('hidden', isDark));
+            document.querySelectorAll('.sun-icon').forEach((icon) => icon.classList.toggle('hidden', !isDark));
+        }
+
+        function initTheme() {
+            const stored = localStorage.getItem('theme');
+            const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            applyTheme(stored || preferred);
+
+            const desktopToggle = document.getElementById('theme-toggle');
+            const mobileToggle = document.getElementById('theme-toggle-mobile');
+
+            function toggleTheme() {
+                const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            }
+
+            if (desktopToggle) {
+                desktopToggle.addEventListener('click', toggleTheme);
+            }
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', toggleTheme);
+            }
+        }
+
+        function initHeroSlider() {
+            const slides = Array.from(document.querySelectorAll('#hero-slider .hero-slide'));
+            const dots = Array.from(document.querySelectorAll('[data-hero-dot]'));
+            if (!slides.length) {
+                return;
+            }
+
+            function setHeroSlide(index) {
+                appState.heroIndex = (index + slides.length) % slides.length;
+                slides.forEach((slide, idx) => slide.classList.toggle('active', idx === appState.heroIndex));
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === appState.heroIndex));
+            }
+
+            dots.forEach((dot) => {
+                dot.addEventListener('click', () => {
+                    setHeroSlide(Number(dot.dataset.heroDot));
+                });
+            });
+
+            setHeroSlide(0);
+            setInterval(() => setHeroSlide(appState.heroIndex + 1), 5000);
+        }
+
+        function initCertificateSlider() {
+            const track = document.getElementById('cert-track');
+            const dots = Array.from(document.querySelectorAll('[data-cert-dot]'));
+            const prev = document.getElementById('cert-prev');
+            const next = document.getElementById('cert-next');
+            const total = dots.length;
+            if (!track || !total) {
+                return;
+            }
+
+            function setCertSlide(index) {
+                appState.certIndex = (index + total) % total;
+                track.style.transform = 'translateX(-' + (appState.certIndex * 100) + '%)';
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === appState.certIndex));
+            }
+
+            dots.forEach((dot) => dot.addEventListener('click', () => setCertSlide(Number(dot.dataset.certDot))));
+            if (prev) {
+                prev.addEventListener('click', () => setCertSlide(appState.certIndex - 1));
+            }
+            if (next) {
+                next.addEventListener('click', () => setCertSlide(appState.certIndex + 1));
+            }
+
+            setCertSlide(0);
+            setInterval(() => setCertSlide(appState.certIndex + 1), 5500);
+        }
+
+        function initGallerySlider() {
+            const track = document.getElementById('gallery-track');
+            const dots = Array.from(document.querySelectorAll('[data-gallery-dot]'));
+            const prev = document.getElementById('gallery-prev');
+            const next = document.getElementById('gallery-next');
+            const total = dots.length;
+            if (!track || !total) {
+                return;
+            }
+
+            function setGallerySlide(index) {
+                appState.galleryIndex = (index + total) % total;
+                track.style.transform = 'translateX(-' + (appState.galleryIndex * 100) + '%)';
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === appState.galleryIndex));
+            }
+
+            dots.forEach((dot) => dot.addEventListener('click', () => setGallerySlide(Number(dot.dataset.galleryDot))));
+            if (prev) {
+                prev.addEventListener('click', () => setGallerySlide(appState.galleryIndex - 1));
+            }
+            if (next) {
+                next.addEventListener('click', () => setGallerySlide(appState.galleryIndex + 1));
+            }
+
+            setGallerySlide(0);
+            setInterval(() => setGallerySlide(appState.galleryIndex + 1), 6000);
+        }
+
+        function initFaq() {
+            document.querySelectorAll('.faq-toggle').forEach((button) => {
+                button.addEventListener('click', () => {
+                    const item = button.closest('.faq-item');
+                    const isOpen = item.classList.contains('open');
+                    item.classList.toggle('open', !isOpen);
+                    button.setAttribute('aria-expanded', String(!isOpen));
+                });
+            });
+        }
+
+        function updateFilterButtons() {
+            document.querySelectorAll('.category-filter').forEach((button) => {
+                const active = button.dataset.category === appState.selectedCategory;
+                button.classList.toggle('bg-brand-50', active);
+                button.classList.toggle('text-brand-700', active);
+                button.classList.toggle('border-brand-200', active);
+                button.classList.toggle('dark:bg-brand-900/30', active);
+                button.classList.toggle('dark:text-brand-200', active);
+                button.classList.toggle('dark:border-brand-800', active);
+
+                if (!active) {
+                    button.classList.remove('bg-brand-50', 'text-brand-700', 'border-brand-200', 'dark:bg-brand-900/30', 'dark:text-brand-200', 'dark:border-brand-800');
+                    button.classList.add('border-slate-300');
+                } else {
+                    button.classList.remove('border-slate-300');
+                }
+            });
+        }
+
+        function renderCourses() {
+            const grid = document.getElementById('courses-grid');
+            const empty = document.getElementById('courses-empty');
+            if (!grid || !empty) {
+                return;
+            }
+
+            const needle = appState.searchTerm.trim().toLowerCase();
+            const filtered = COURSES.filter((course) => {
+                const matchesCategory = appState.selectedCategory === 'All' || course.category === appState.selectedCategory;
+                const textBlob = (course.title + ' ' + course.category + ' ' + course.shortDescription + ' ' + course.overview).toLowerCase();
+                const matchesSearch = !needle || textBlob.includes(needle);
+                return matchesCategory && matchesSearch;
+            });
+
+            grid.innerHTML = filtered.map((course) => {
+                return `
+                <article class="course-card rounded-2xl border border-slate-200 bg-white p-6 shadow-lg hover:shadow-2xl dark:border-slate-800 dark:bg-slate-900">
+                    <div class="flex h-24 items-center justify-center overflow-hidden rounded-xl bg-slate-50 dark:bg-slate-800">
+                        <img src="${course.image}" alt="${course.title}" class="h-full w-full object-contain p-2">
+                    </div>
+                    <div class="mt-5 flex items-center justify-between gap-3">
+                        <span class="inline-flex rounded-full border border-brand-200 bg-brand-50 px-2.5 py-1 text-xs font-semibold text-brand-700 dark:border-brand-800 dark:bg-brand-900/30 dark:text-brand-200">${course.category}</span>
+                        <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">${course.duration}</span>
+                    </div>
+                    <h3 class="mt-3 text-xl font-extrabold">${course.title}</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">${course.shortDescription}</p>
+                    <div class="mt-5 flex items-center justify-between">
+                        <p class="text-sm font-extrabold text-brand-700 dark:text-brand-300">${course.fee}</p>
+                        <button type="button" onclick="openCourseModal('${course.id}')" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">Read More</button>
+                    </div>
+                </article>
+                `;
+            }).join('');
+
+            empty.classList.toggle('hidden', filtered.length > 0);
+        }
+
+        function initCourseFilters() {
+            const search = document.getElementById('course-search');
+            if (search) {
+                search.addEventListener('input', (event) => {
+                    appState.searchTerm = event.target.value;
+                    renderCourses();
+                });
+            }
+
+            document.querySelectorAll('.category-filter').forEach((button) => {
+                button.addEventListener('click', () => {
+                    appState.selectedCategory = button.dataset.category;
+                    updateFilterButtons();
+                    renderCourses();
+                });
+            });
+
+            updateFilterButtons();
+            renderCourses();
+        }
+
+        function openCourseModal(courseId) {
+            const modal = document.getElementById('course-modal');
+            const course = COURSES.find((item) => item.id === courseId);
+            if (!modal || !course) {
+                return;
+            }
+
+            document.getElementById('course-modal-category').textContent = course.category;
+            document.getElementById('course-modal-title').textContent = course.title;
+            document.getElementById('course-modal-image').src = course.image;
+            document.getElementById('course-modal-image').alt = course.title;
+            document.getElementById('course-modal-overview').textContent = course.overview;
+            document.getElementById('course-modal-duration').textContent = course.duration;
+            document.getElementById('course-modal-fee').textContent = course.fee;
+
+            document.getElementById('course-modal-learn').innerHTML = course.learn.map((point) => `<li>${point}</li>`).join('');
+            document.getElementById('course-modal-modules').innerHTML = course.modules.map((point) => `<li>${point}</li>`).join('');
+
+            const applyButton = document.getElementById('course-modal-apply');
+            if (applyButton) {
+                applyButton.dataset.course = course.title;
+            }
+
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+        window.openCourseModal = openCourseModal;
+
+        function closeCourseModal() {
+            const modal = document.getElementById('course-modal');
+            if (!modal) {
+                return;
+            }
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function initCourseModal() {
+            const closeButton = document.getElementById('course-modal-close');
+            const modal = document.getElementById('course-modal');
+
+            if (closeButton) {
+                closeButton.addEventListener('click', closeCourseModal);
+            }
+
+            if (modal) {
+                modal.addEventListener('click', (event) => {
+                    if (event.target === modal) {
+                        closeCourseModal();
+                    }
+                });
+            }
+        }
+
+        function openApplyModal(courseName) {
+            const overlay = document.getElementById('apply-modal-overlay');
+            const modal = document.getElementById('apply-modal');
+            const courseSelect = document.getElementById('ad-course');
+            const defaultView = document.getElementById('apply-modal-default');
+            const formContainer = document.getElementById('admission-form-container');
+
+            if (!overlay || !modal) {
+                return;
+            }
+
+            overlay.classList.remove('hidden');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            if (defaultView) {
+                defaultView.classList.remove('hidden');
+            }
+            if (formContainer) {
+                formContainer.classList.add('hidden');
+            }
+
+            if (courseSelect && courseName) {
+                const option = Array.from(courseSelect.options).find((entry) => entry.text.toLowerCase().includes(courseName.toLowerCase().split(' ')[0]));
+                if (option) {
+                    courseSelect.value = option.value;
+                }
+            }
+        }
+
+        function closeApplyModal() {
+            const overlay = document.getElementById('apply-modal-overlay');
+            const modal = document.getElementById('apply-modal');
+
+            if (overlay) {
+                overlay.classList.add('hidden');
+            }
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        function initApplyModal() {
+            const overlay = document.getElementById('apply-modal-overlay');
+            const modal = document.getElementById('apply-modal');
+            const closeButton = document.getElementById('apply-modal-close');
+            const applyOnline = document.getElementById('apply-online-btn');
+            const defaultView = document.getElementById('apply-modal-default');
+            const formContainer = document.getElementById('admission-form-container');
+            const cancelButton = document.getElementById('admission-cancel');
+            const admissionForm = document.getElementById('admission-form');
+            const dateInput = document.getElementById('ad-date');
+            const phoneInput = document.getElementById('ad-phone');
+            const phoneError = document.getElementById('apply-phone-error');
+
+            if (dateInput && !dateInput.value) {
+                dateInput.valueAsDate = new Date();
+            }
+
+            if (overlay) {
+                overlay.addEventListener('click', closeApplyModal);
+            }
+            if (closeButton) {
+                closeButton.addEventListener('click', closeApplyModal);
+            }
+            if (cancelButton) {
+                cancelButton.addEventListener('click', closeApplyModal);
+            }
+
+            if (applyOnline && defaultView && formContainer) {
+                applyOnline.addEventListener('click', () => {
+                    defaultView.classList.add('hidden');
+                    formContainer.classList.remove('hidden');
+                });
+            }
+
+            if (phoneInput && phoneError) {
+                phoneInput.addEventListener('input', () => {
+                    let value = phoneInput.value.replace(/\D/g, '');
+                    if (value.length > 11) {
+                        value = value.slice(0, 11);
+                    }
+                    phoneInput.value = value;
+                    const valid = /^03\d{9}$/.test(value);
+                    phoneError.classList.toggle('hidden', valid || value.length === 0);
+                });
+            }
+
+            document.addEventListener('click', (event) => {
+                const trigger = event.target.closest('.apply-now');
+                if (!trigger) {
+                    return;
+                }
+                event.preventDefault();
+                const course = trigger.dataset.course || '';
+                openApplyModal(course);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeCourseModal();
+                    closeApplyModal();
+                }
+            });
+
+            if (admissionForm) {
+                admissionForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+                    const formData = new FormData(admissionForm);
+                    const phone = String(formData.get('contact') || '').trim();
+
+                    if (!/^03\d{9}$/.test(phone)) {
+                        if (phoneError) {
+                            phoneError.classList.remove('hidden');
+                        }
+                        return;
+                    }
+
+                    const studentName = String(formData.get('studentName') || '').trim();
+                    const fatherName = String(formData.get('fatherName') || '').trim();
+                    const email = String(formData.get('email') || '').trim();
+                    const course = String(formData.get('admissionCourse') || '').trim();
+                    const address = String(formData.get('address') || '').trim();
+                    const time = String(formData.get('suitableTime') || '').trim();
+                    const signature = String(formData.get('typedSignature') || '').trim();
+
+                    const lines = [
+                        'Assalam o Alaikum, I would like to apply for admission.',
+                        'Name: ' + studentName,
+                        'Father Name: ' + (fatherName || 'N/A'),
+                        'Phone: ' + phone,
+                        'Email: ' + email,
+                        'Course: ' + course,
+                        'Suitable Time: ' + (time || 'N/A'),
+                        'Address: ' + (address || 'N/A'),
+                        'Signature: ' + (signature || (appState.drawnSignature ? 'Drawn Signature Attached' : 'N/A'))
+                    ];
+
+                    const message = encodeURIComponent(lines.join('\n'));
+                    window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + message, '_blank');
+
+                    admissionForm.reset();
+                    appState.drawnSignature = '';
+                    const sigStatus = document.getElementById('sig-status');
+                    if (sigStatus) {
+                        sigStatus.textContent = '';
+                    }
+
+                    if (defaultView && formContainer) {
+                        formContainer.classList.add('hidden');
+                        defaultView.classList.remove('hidden');
+                    }
+
+                    closeApplyModal();
+                });
+            }
+
+            initSignaturePad();
+        }
+
+        function initSignaturePad() {
+            const canvas = document.getElementById('signature-pad');
+            const clearButton = document.getElementById('sig-clear');
+            const useButton = document.getElementById('sig-use');
+            const status = document.getElementById('sig-status');
+            if (!canvas) {
+                return;
+            }
+
+            const ctx = canvas.getContext('2d');
+            let drawing = false;
+
+            function resizeCanvas() {
+                const ratio = window.devicePixelRatio || 1;
+                const width = canvas.clientWidth;
+                const height = canvas.clientHeight;
+                canvas.width = Math.floor(width * ratio);
+                canvas.height = Math.floor(height * ratio);
+                ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.strokeStyle = '#0f172a';
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            canvas.addEventListener('pointerdown', (event) => {
+                drawing = true;
+                ctx.beginPath();
+                ctx.moveTo(event.offsetX, event.offsetY);
+            });
+
+            canvas.addEventListener('pointermove', (event) => {
+                if (!drawing) {
+                    return;
+                }
+                ctx.lineTo(event.offsetX, event.offsetY);
+                ctx.stroke();
+            });
+
+            window.addEventListener('pointerup', () => {
+                drawing = false;
+            });
+
+            if (clearButton) {
+                clearButton.addEventListener('click', () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    appState.drawnSignature = '';
+                    if (status) {
+                        status.textContent = '';
+                    }
+                });
+            }
+
+            if (useButton) {
+                useButton.addEventListener('click', () => {
+                    appState.drawnSignature = canvas.toDataURL('image/png');
+                    if (status) {
+                        status.textContent = 'Drawn signature captured';
+                    }
+                });
+            }
+        }
+
+        function initContactForm() {
+            const form = document.getElementById('contact-form');
+            const feedback = document.getElementById('contact-feedback');
+            if (!form || !feedback) {
+                return;
+            }
+
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                feedback.textContent = 'Thank you. Your message has been recorded and our team will contact you soon.';
+                feedback.classList.remove('hidden');
+                form.reset();
+            });
+        }
+
+        function initRoutingFromHash() {
+            window.addEventListener('hashchange', () => {
+                const incoming = (window.location.hash || '').replace('#', '').toLowerCase();
+                if (VIEW_NAMES.includes(incoming) && incoming !== appState.currentView) {
+                    navigate(incoming);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = String(new Date().getFullYear());
+
+            initTheme();
+            initMobileMenu();
+            initHeroSlider();
+            initCertificateSlider();
+            initGallerySlider();
+            initFaq();
+            initCourseFilters();
+            initCourseModal();
+            initApplyModal();
+            initContactForm();
+            initRoutingFromHash();
+
+            navigate(getInitialView());
+        });
+    </script>
+</body>
+</html>
