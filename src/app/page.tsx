@@ -7,6 +7,7 @@ import FeaturedCoursesSection from "@/components/ui/FeaturedCoursesSection";
 import FaqAccordion from "@/components/ui/FaqAccordion";
 import GallerySlider from "@/components/ui/GallerySlider";
 import HeroSlider from "@/components/ui/HeroSlider";
+import LandingContactShortcuts from "@/components/ui/LandingContactShortcuts";
 import QuickCallbackBanner from "@/components/ui/QuickCallbackBanner";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import Testimonials from "@/components/ui/Testimonials";
@@ -29,6 +30,7 @@ export default function HomePage() {
   return (
     <section>
       <HeroSlider />
+      <LandingContactShortcuts />
 
       <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-6">
         <div className="rounded-2xl border border-slate-200 bg-white/80 p-5 shadow-lg backdrop-blur dark:border-slate-800 dark:bg-slate-900/80">
