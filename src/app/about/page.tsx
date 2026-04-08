@@ -182,14 +182,14 @@ export default function AboutPage() {
               <div className="mx-auto mb-5 h-28 w-28 overflow-hidden rounded-full border-4 border-white shadow dark:border-slate-700">
                 <Image
                   src="/tj.jpeg"
-                  alt="Tariq Jameel"
+                  alt="TARIQ JAMEEL"
                   width={240}
                   height={240}
                   className="h-full w-full object-cover"
                   style={{ objectPosition: "50% 92%" }}
                 />
               </div>
-              <h4 className="text-xl font-bold">Tariq Jameel</h4>
+              <h4 className="text-xl font-bold">TARIQ JAMEEL</h4>
               <p className="mt-2 inline-flex rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:bg-blue-900/30 dark:text-blue-200">
                 Branch Administrator Incharge
               </p>
