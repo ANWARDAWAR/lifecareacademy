@@ -1,4 +1,4 @@
-// File: /home/lord/Documents/LifeCareAcademy (Copy)/src/app/about/page.tsx
+// File: /home/tesla/Documents/lifecareacemy/lifecareacademy/src/app/about/page.tsx
 import * as entry from '../../../../src/app/about/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
